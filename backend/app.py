@@ -83,7 +83,7 @@ def criar_atleta():
         print(f"Erro ao criar atleta: {e}")
         return jsonify({"error": f"Erro ao criar atleta: {str(e)}"}), 500
 
-@app.route('/atletas', methods=['GET'])
+@app.route('/api/atletas', methods=['GET'])
 def listar_atletas():
     try:
         conn = get_db_connection()
@@ -713,4 +713,4 @@ def listar_historico_peladas():
 # --- Execução do App ---
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000) # Adicione host='0.0.0.0'

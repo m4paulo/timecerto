@@ -1,0 +1,19 @@
+# Exclua pastas do Python/Backend e de IDEs
+.idea/
+.venv/
+backend/
+frontend/
+
+# Exclua dependências e caches locais do Node/Expo que não são necessários para o build EAS
+node_modules/
+.expo/
+*.env # Se você tiver um arquivo .env na raiz do TimeCertoApp
+
+# Outros arquivos de cache/logs que podem estar no seu ambiente
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.cache/
+build/
+dist/
