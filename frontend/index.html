@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeCerto - Peladas de Basquete</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db"/>
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <header>
+        <h1>TimeCerto</h1>
+        <nav>
+            <button id="btnAtletas" class="active-nav">Atletas</button>
+            <button id="btnSessoes">Sessões</button>
+            <button id="btnHistorico">Histórico</button>
+            <button id="btnFinancas">Finanças</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sectionAtletas" class="active">
+            <h2>Gerenciar Atletas</h2>
+            <div id="cadastroAtletaArea">
+                <form id="formAtleta">
+                    <input type="text" id="nomeAtleta" placeholder="Nome do Atleta" required>
+                    <select id="posicaoPrincipalAtleta" required>
+                        <option value="">Posição Principal</option>
+                        <option value="Armador">Armador</option>
+                        <option value="Ala">Ala</option>
+                        <option value="Pivo">Pivô</option>
+                    </select>
+                    <select id="posicaoSecundariaAtleta">
+                        <option value="">Posição Secundária (Opcional)</option>
+                        <option value="Armador">Armador</option>
+                        <option value="Ala">Ala</option>
+                        <option value="Pivo">Pivô</option>
+                    </select>
+                    <select id="tipoAtleta" required>
+                        <option value="">Tipo</option>
+                        <option value="mensalista">Mensalista</option>
+                        <option value="diarista">Diarista</option>
+                    </select>
+                    <select id="nivelAtleta" required>
+                        <option value="">Nível Geral</option>
+                        <option value="A">A (Expert)</option>
+                        <option value="B">B (Intermediário)</option>
+                        <option value="C">C (Iniciante)</option>
+                    </select>
+                    <button type="submit">Adicionar Atleta</button>
+                </form>
+                <h3>Lista de Atletas</h3>
+                <ul id="listaAtletas">
+                    </ul>
+            </div>
+
+            <div id="edicaoAtletaArea" class="hidden">
+                <h2>Editar Atleta: <span id="editarAtletaNome"></span></h2>
+                <button id="btnVoltarAtletas" class="light-button">&larr; Voltar</button>
+                <form id="formEditarAtleta">
+                    <input type="hidden" id="editarAtletaId">
+                    <input type="text" id="editarNomeAtleta" placeholder="Nome do Atleta" required>
+                    <select id="editarPosicaoPrincipalAtleta" required>
+                        <option value="">Posição Principal</option>
+                        <option value="Armador">Armador</option>
+                        <option value="Ala">Ala</option>
+                        <option value="Pivo">Pivô</option>
+                    </select>
+                    <select id="editarPosicaoSecundariaAtleta">
+                        <option value="">Posição Secundária (Opcional)</option>
+                        <option value="Armador">Armador</option>
+                        <option value="Ala">Ala</option>
+                        <option value="Pivo">Pivô</option>
+                    </select>
+                    <select id="editarTipoAtleta" required>
+                        <option value="">Tipo</option>
+                        <option value="mensalista">Mensalista</option>
+                        <option value="diarista">Diarista</option>
+                    </select>
+                    <select id="editarNivelAtleta" required>
+                        <option value="">Nível Geral</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+
+                    <h4>Atributos Detalhados (1-5)</h4>
+                    <label for="editarVelocidade">Velocidade:</label>
+                    <input type="number" id="editarVelocidade" min="1" max="5" required>
+                    <label for="editarFisico">Físico:</label>
+                    <input type="number" id="editarFisico" min="1" max="5" required>
+                    <label for="editarArremesso">Arremesso:</label>
+                    <input type="number" id="editarArremesso" min="1" max="5" required>
+                    <label for="editarDefesa">Defesa:</label>
+                    <input type="number" id="editarDefesa" min="1" max="5" required>
+                    <label for="editarDrible">Drible:</label>
+                    <input type="number" id="editarDrible" min="1" max="5" required>
+
+                    <button type="submit">Salvar Edições</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="sectionSessoes" class="hidden">
+            <h2>Gerenciar Sessões</h2>
+
+            <div id="sessoesListagemArea">
+                <form id="formSessao">
+                    <label for="dataHoraSessao">Data e Hora:</label>
+                    <input type="datetime-local" id="dataHoraSessao" required>
+
+                    <input type="text" id="localSessao" placeholder="Local da Pelada" required>
+                    <input type="number" id="maxJogadoresSessao" placeholder="Máx. Jogadores (Opcional)">
+                    <button type="submit">Criar Sessão</button>
+                </form>
+                <h3>Sessões Ativas</h3>
+                <ul id="listaSessoes">
+                    </ul>
+            </div>
+
+            <div id="gerenciarDetalhesArea" class="hidden">
+                <h3>Participantes da Sessão: <span id="sessaoTitulo"></span></h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="btnVoltarSessoes" class="light-button">&larr; Voltar</button>
+                    <select id="statusSessaoSelect" class="light-button">
+                        <option value="ativa">Ativa</option>
+                        <option value="finalizada">Finalizar Sessão</option>
+                        <option value="cancelada">Cancelar Sessão</option>
+                    </select>
+                </div>
+
+                <h4>Adicionar Participante:</h4>
+                <select id="selectAtletaParaSessao">
+                    <option value="">Selecione um Atleta</option>
+                    </select>
+                <button id="addParticipanteBtn">Adicionar</button>
+
+                <h4>Lista de Participantes:</h4>
+                <ul id="listaParticipantesSessao">
+                    </ul>
+
+                <hr style="margin: 20px 0;">
+
+                <h4>Scout do Jogo <button id="btnIniciarScout" class="green-button">Iniciar Scout</button></h4>
+                <div id="areaScout" class="hidden">
+                    <div id="controlesScout">
+                        </div>
+                    <button id="btnFinalizarScout" class="red-button" style="margin-top: 15px;">Salvar Scout</button>
+                </div>
+
+                <hr style="margin: 20px 0;">
+
+                <h4>Formar Times <button id="btnFormarTimes" class="light-button">Formar Times</button></h4>
+                <div id="areaTimes" class="hidden" style="margin-top: 15px;">
+                    <div id="timesGerados">
+                        </div>
+                    <button id="btnSalvarTimes" class="green-button" style="margin-top: 15px;">Salvar Times</button>
+                    <button id="btnLimparTimes" class="red-button" style="margin-top: 10px;">Limpar Times</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="sectionHistorico" class="hidden">
+            <h2>Histórico de Peladas</h2>
+            <ul id="listaHistoricoPeladas">
+                </ul>
+        </section>
+
+        <section id="sectionFinancas" class="hidden">
+            <h2>Gestão Financeira</h2>
+            <form id="formRegistrarPagamento">
+                <h4>Registrar Pagamento</h4>
+                <select id="selectAtletaPagamento" required>
+                    <option value="">Selecione um Atleta</option>
+                    </select>
+                <input type="number" id="valorPagamento" placeholder="Valor (Ex: 50.00)" step="0.01" required>
+                <select id="tipoPagamento" required>
+                    <option value="">Tipo de Pagamento</option>
+                    <option value="mensalidade">Mensalidade</option>
+                    <option value="diaria">Diária de Jogo</option>
+                </select>
+                <input type="month" id="referenciaMesAno" placeholder="Mês/Ano de Referência (Mensalidade)">
+                <button type="submit">Registrar Pagamento</button>
+            </form>
+
+            <h3>Histórico de Pagamentos</h3>
+            <ul id="listaPagamentos">
+                </ul>
+
+            <h3>Pendências de Mensalidade (Mês Atual)</h3>
+            <ul id="listaPendencias">
+                </ul>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado com sucesso:', registration);
+                    })
+                    .catch(error => {
+                        console.error('Falha ao registrar Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
